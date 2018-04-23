@@ -1,0 +1,80 @@
+public class ListaLibros
+{
+   
+    Libro primero;
+
+    /**
+     * Constructor for objects of class ListaNodos
+     */
+    public ListaLibros()
+    {
+       
+        primero = null;
+    }
+
+   
+    // Completar los metodos
+    
+    // Incluye un nuevo libro en la lista
+    public void pon( Libro valor){
+       valor.siguiente=primero;
+       primero=valor;
+    }
+    
+    public boolean estaVacia(){
+        boolean vacio=false;
+        if(primero==null){
+            vacio=true;
+        }
+        return vacio;    
+        
+    }
+    
+    // Devuelve un libro que es eliminado de la lista o null si no exite
+    public Libro quitar ( int id ) {
+        Libro aux=primero;
+        Libro aux1 = primero.siguiente; 
+        while(aux!=null || aux1!=null){
+        if(!estaVacia()){
+           if(id == aux.id){
+               primero=primero.siguiente;
+               return aux;
+            }else if(aux1.id==id){
+               aux.siguiente=aux1.siguiente;
+               return aux1;
+            }else{
+                aux=aux.siguiente;
+                aux1=aux1.siguiente;
+            }
+        }
+       }
+       return null;
+    }
+   
+    // Devuelve el id del libro o -1 si no esta
+    public int buscarId ( String titulo ){
+        Libro aux=primero;
+        int dev=-1;
+        while(aux!=null){
+            if(aux.titulo.equals(titulo)){
+                dev=aux.id;
+            }
+            aux=aux.siguiente;
+        }
+        return dev;
+   }
+    // Muestra los libros almacenados
+    public void verCatalogo (){
+        Libro aux =primero;
+        int numLibro=0;
+        System.out.println("--------------------");
+        System.out.println("Lista de libros: ");
+        while(aux!=null){
+            numLibro++;
+            System.out.println(numLibro+ ": "+aux);
+            aux=aux.siguiente;
+        }
+        System.out.println("No existen mas.");
+        System.out.println("--------------------");
+    }
+}
